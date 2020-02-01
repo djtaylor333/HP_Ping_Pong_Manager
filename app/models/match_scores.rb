@@ -1,3 +1,0 @@
-class MatchScores < ApplicationRecord
-
-end
