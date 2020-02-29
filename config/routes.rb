@@ -7,5 +7,4 @@ Rails.application.routes.draw do
   get '/login' => 'login#index'
   get '/signup' => 'signup#index'
 
-
 end

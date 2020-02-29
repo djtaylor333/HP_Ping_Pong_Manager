@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_222724) do
   end
 
   create_table "matches", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.datetime "date_played", null: false
+    t.datetime "date_played"
     t.integer "player_1_id", null: false
     t.integer "player_2_id", null: false
     t.string "format", null: false

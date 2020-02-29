@@ -2307,3 +2307,1817 @@ Processing by RailsAdmin::MainController#index as HTML
 Completed 200 OK in 55ms (Views: 53.3ms | ActiveRecord: 0.3ms | Allocations: 57642)
 
 
+  [1m[35m (0.2ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (3.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ping_pong_manager`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE DATABASE `ping_pong_manager` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE DATABASE `ping_pong_manager` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `games` CASCADE[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE `games` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `date_played` datetime, `winner` int, `loser` int, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `match_id` bigint,  INDEX `index_games_on_match_id`  (`match_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `matches` CASCADE[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE `matches` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `date_played` datetime NOT NULL, `player_1_id` int NOT NULL, `player_2_id` int NOT NULL, `format` varchar(255) NOT NULL, `weight` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `tournament_id` bigint,  INDEX `index_matches_on_tournament_id`  (`tournament_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `players` CASCADE[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE `players` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `rank` int DEFAULT 0, `active` tinyint(1) DEFAULT TRUE, `points` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `tournament_id` bigint,  INDEX `index_players_on_tournament_id`  (`tournament_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `scores` CASCADE[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE `scores` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `winner_points` int DEFAULT 0, `loser_points` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `game_id` bigint,  INDEX `index_scores_on_game_id`  (`game_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `tournaments` CASCADE[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE `tournaments` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `format` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `start_date` datetime NOT NULL, `end_date` datetime NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE `games` ADD CONSTRAINT `fk_rails_faea86ff02`
+FOREIGN KEY (`match_id`)
+  REFERENCES `matches` (`id`)
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE `matches` ADD CONSTRAINT `fk_rails_700eaa2935`
+FOREIGN KEY (`tournament_id`)
+  REFERENCES `tournaments` (`id`)
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE `players` ADD CONSTRAINT `fk_rails_f96ec8a72f`
+FOREIGN KEY (`tournament_id`)
+  REFERENCES `tournaments` (`id`)
+[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE `scores` ADD CONSTRAINT `fk_rails_41612d9bae`
+FOREIGN KEY (`game_id`)
+  REFERENCES `games` (`id`)
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@innodb_file_per_table = 1 AND @@innodb_file_format = 'Barracuda'[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) COLLATE utf8_general_ci NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20200131222724)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20200131213955),
+(20200131214118),
+(20200131214403),
+(20200131214525),
+(20200131214645),
+(20200131222125),
+(20200131222326),
+(20200131222525);
+
+[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) COLLATE utf8_general_ci NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2020-02-28 21:43:10.650259', '2020-02-28 21:43:10.650259')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '31ebdddf66408b21957c61ae63a341247bc7530c', '2020-02-28 21:43:10.656165', '2020-02-28 21:43:10.656165')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS `games` CASCADE[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (3.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ping_pong_manager`[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE DATABASE `ping_pong_manager` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE DATABASE `ping_pong_manager` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `games` CASCADE[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE `games` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `date_played` datetime, `winner` int, `loser` int, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `match_id` bigint,  INDEX `index_games_on_match_id`  (`match_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `matches` CASCADE[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE `matches` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `date_played` datetime NOT NULL, `player_1_id` int NOT NULL, `player_2_id` int NOT NULL, `format` varchar(255) NOT NULL, `weight` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `tournament_id` bigint,  INDEX `index_matches_on_tournament_id`  (`tournament_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `players` CASCADE[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE `players` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `rank` int DEFAULT 0, `active` tinyint(1) DEFAULT TRUE, `points` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `tournament_id` bigint,  INDEX `index_players_on_tournament_id`  (`tournament_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `scores` CASCADE[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE `scores` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `winner_points` int DEFAULT 0, `loser_points` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `game_id` bigint,  INDEX `index_scores_on_game_id`  (`game_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `tournaments` CASCADE[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE `tournaments` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `format` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `start_date` datetime NOT NULL, `end_date` datetime NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE `games` ADD CONSTRAINT `fk_rails_faea86ff02`
+FOREIGN KEY (`match_id`)
+  REFERENCES `matches` (`id`)
+[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE `matches` ADD CONSTRAINT `fk_rails_700eaa2935`
+FOREIGN KEY (`tournament_id`)
+  REFERENCES `tournaments` (`id`)
+[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE `players` ADD CONSTRAINT `fk_rails_f96ec8a72f`
+FOREIGN KEY (`tournament_id`)
+  REFERENCES `tournaments` (`id`)
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE `scores` ADD CONSTRAINT `fk_rails_41612d9bae`
+FOREIGN KEY (`game_id`)
+  REFERENCES `games` (`id`)
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@innodb_file_per_table = 1 AND @@innodb_file_format = 'Barracuda'[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) COLLATE utf8_general_ci NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20200131222724)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20200131213955),
+(20200131214118),
+(20200131214403),
+(20200131214525),
+(20200131214645),
+(20200131222125),
+(20200131222326),
+(20200131222525);
+
+[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) COLLATE utf8_general_ci NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2020-02-28 21:44:03.766926', '2020-02-28 21:44:03.766926')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '31ebdddf66408b21957c61ae63a341247bc7530c', '2020-02-28 21:44:03.772195', '2020-02-28 21:44:03.772195')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS `games` CASCADE[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (3.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ping_pong_manager`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE DATABASE `ping_pong_manager` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE DATABASE `ping_pong_manager` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `games` CASCADE[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE `games` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `date_played` datetime, `winner` int, `loser` int, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `match_id` bigint,  INDEX `index_games_on_match_id`  (`match_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `matches` CASCADE[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE `matches` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `date_played` datetime, `player_1_id` int NOT NULL, `player_2_id` int NOT NULL, `format` varchar(255) NOT NULL, `weight` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `tournament_id` bigint,  INDEX `index_matches_on_tournament_id`  (`tournament_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `players` CASCADE[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE `players` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `rank` int DEFAULT 0, `active` tinyint(1) DEFAULT TRUE, `points` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `tournament_id` bigint,  INDEX `index_players_on_tournament_id`  (`tournament_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `scores` CASCADE[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE `scores` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `winner_points` int DEFAULT 0, `loser_points` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `game_id` bigint,  INDEX `index_scores_on_game_id`  (`game_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `tournaments` CASCADE[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE `tournaments` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `format` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `start_date` datetime NOT NULL, `end_date` datetime NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE `games` ADD CONSTRAINT `fk_rails_faea86ff02`
+FOREIGN KEY (`match_id`)
+  REFERENCES `matches` (`id`)
+[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE `matches` ADD CONSTRAINT `fk_rails_700eaa2935`
+FOREIGN KEY (`tournament_id`)
+  REFERENCES `tournaments` (`id`)
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE `players` ADD CONSTRAINT `fk_rails_f96ec8a72f`
+FOREIGN KEY (`tournament_id`)
+  REFERENCES `tournaments` (`id`)
+[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE `scores` ADD CONSTRAINT `fk_rails_41612d9bae`
+FOREIGN KEY (`game_id`)
+  REFERENCES `games` (`id`)
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@innodb_file_per_table = 1 AND @@innodb_file_format = 'Barracuda'[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) COLLATE utf8_general_ci NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20200131222724)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20200131213955),
+(20200131214118),
+(20200131214403),
+(20200131214525),
+(20200131214645),
+(20200131222125),
+(20200131222326),
+(20200131222525);
+
+[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) COLLATE utf8_general_ci NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2020-02-28 21:50:02.591621', '2020-02-28 21:50:02.591621')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '389a8e1232d3c8be5a3d79b1bc24205a4fad9fbc', '2020-02-28 21:50:02.597671', '2020-02-28 21:50:02.597671')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS `games` CASCADE[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (2.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ping_pong_manager`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE DATABASE `ping_pong_manager` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE DATABASE `ping_pong_manager` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `games` CASCADE[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE `games` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `date_played` datetime, `winner` int, `loser` int, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `match_id` bigint,  INDEX `index_games_on_match_id`  (`match_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `matches` CASCADE[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE `matches` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `date_played` datetime, `player_1_id` int NOT NULL, `player_2_id` int NOT NULL, `format` varchar(255) NOT NULL, `weight` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `tournament_id` bigint,  INDEX `index_matches_on_tournament_id`  (`tournament_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `players` CASCADE[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE `players` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `rank` int DEFAULT 0, `active` tinyint(1) DEFAULT TRUE, `points` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `tournament_id` bigint,  INDEX `index_players_on_tournament_id`  (`tournament_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `scores` CASCADE[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE `scores` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `winner_points` int DEFAULT 0, `loser_points` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `game_id` bigint,  INDEX `index_scores_on_game_id`  (`game_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `tournaments` CASCADE[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE `tournaments` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `format` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `start_date` datetime NOT NULL, `end_date` datetime NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE `games` ADD CONSTRAINT `fk_rails_faea86ff02`
+FOREIGN KEY (`match_id`)
+  REFERENCES `matches` (`id`)
+[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE `matches` ADD CONSTRAINT `fk_rails_700eaa2935`
+FOREIGN KEY (`tournament_id`)
+  REFERENCES `tournaments` (`id`)
+[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE `players` ADD CONSTRAINT `fk_rails_f96ec8a72f`
+FOREIGN KEY (`tournament_id`)
+  REFERENCES `tournaments` (`id`)
+[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE `scores` ADD CONSTRAINT `fk_rails_41612d9bae`
+FOREIGN KEY (`game_id`)
+  REFERENCES `games` (`id`)
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@innodb_file_per_table = 1 AND @@innodb_file_format = 'Barracuda'[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) COLLATE utf8_general_ci NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20200131222724)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20200131213955),
+(20200131214118),
+(20200131214403),
+(20200131214525),
+(20200131214645),
+(20200131222125),
+(20200131222326),
+(20200131222525);
+
+[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) COLLATE utf8_general_ci NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2020-02-28 21:51:25.727940', '2020-02-28 21:51:25.727940')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '389a8e1232d3c8be5a3d79b1bc24205a4fad9fbc', '2020-02-28 21:51:25.733904', '2020-02-28 21:51:25.733904')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS `games` CASCADE[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (3.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ping_pong_manager`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE DATABASE `ping_pong_manager` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE DATABASE `ping_pong_manager` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `games` CASCADE[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE `games` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `date_played` datetime, `winner` int, `loser` int, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `match_id` bigint,  INDEX `index_games_on_match_id`  (`match_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `matches` CASCADE[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE `matches` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `date_played` datetime, `player_1_id` int NOT NULL, `player_2_id` int NOT NULL, `format` varchar(255) NOT NULL, `weight` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `tournament_id` bigint,  INDEX `index_matches_on_tournament_id`  (`tournament_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `players` CASCADE[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE `players` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `rank` int DEFAULT 0, `active` tinyint(1) DEFAULT TRUE, `points` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `tournament_id` bigint,  INDEX `index_players_on_tournament_id`  (`tournament_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `scores` CASCADE[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE `scores` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `winner_points` int DEFAULT 0, `loser_points` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `game_id` bigint,  INDEX `index_scores_on_game_id`  (`game_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `tournaments` CASCADE[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE `tournaments` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `format` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `start_date` datetime NOT NULL, `end_date` datetime NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE `games` ADD CONSTRAINT `fk_rails_faea86ff02`
+FOREIGN KEY (`match_id`)
+  REFERENCES `matches` (`id`)
+[0m
+  [1m[35m (2.3ms)[0m  [1m[35mALTER TABLE `matches` ADD CONSTRAINT `fk_rails_700eaa2935`
+FOREIGN KEY (`tournament_id`)
+  REFERENCES `tournaments` (`id`)
+[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE `players` ADD CONSTRAINT `fk_rails_f96ec8a72f`
+FOREIGN KEY (`tournament_id`)
+  REFERENCES `tournaments` (`id`)
+[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE `scores` ADD CONSTRAINT `fk_rails_41612d9bae`
+FOREIGN KEY (`game_id`)
+  REFERENCES `games` (`id`)
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@innodb_file_per_table = 1 AND @@innodb_file_format = 'Barracuda'[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) COLLATE utf8_general_ci NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20200131222724)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20200131213955),
+(20200131214118),
+(20200131214403),
+(20200131214525),
+(20200131214645),
+(20200131222125),
+(20200131222326),
+(20200131222525);
+
+[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) COLLATE utf8_general_ci NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2020-02-28 21:53:19.713685', '2020-02-28 21:53:19.713685')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '389a8e1232d3c8be5a3d79b1bc24205a4fad9fbc', '2020-02-28 21:53:19.719806', '2020-02-28 21:53:19.719806')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS `games` CASCADE[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (2.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ping_pong_manager`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE DATABASE `ping_pong_manager` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE DATABASE `ping_pong_manager` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@innodb_file_per_table = 1 AND @@innodb_file_format = 'Barracuda'[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) COLLATE utf8_general_ci NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20200131222724)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20200131213955),
+(20200131214118),
+(20200131214403),
+(20200131214525),
+(20200131214645),
+(20200131222125),
+(20200131222326),
+(20200131222525);
+
+[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) COLLATE utf8_general_ci NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2020-02-28 21:53:42.249355', '2020-02-28 21:53:42.249355')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '54359757feb850790167d742bcd6e787a48314e3', '2020-02-28 21:53:42.255366', '2020-02-28 21:53:42.255366')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.2ms)[0m  [1m[33mUPDATE `ar_internal_metadata` SET `ar_internal_metadata`.`value` = 'test', `ar_internal_metadata`.`updated_at` = '2020-02-28 21:53:42.265503' WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.2ms)[0m  [1m[33mUPDATE `ar_internal_metadata` SET `ar_internal_metadata`.`value` = 'development', `ar_internal_metadata`.`updated_at` = '2020-02-28 21:54:12.131668' WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (1.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ping_pong_manager`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE DATABASE `ping_pong_manager` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE DATABASE `ping_pong_manager` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@innodb_file_per_table = 1 AND @@innodb_file_format = 'Barracuda'[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) COLLATE utf8_general_ci NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) COLLATE utf8_general_ci NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('7536514140977839185', 0)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateUsersTable (20200131213955)
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE `players` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `rank` int DEFAULT 0, `active` tinyint(1) DEFAULT TRUE, `points` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131213955')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTournamentsTable (20200131214118)
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE `tournaments` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `format` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `start_date` datetime NOT NULL, `end_date` datetime NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131214118')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMatchesTable (20200131214403)
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE `matches` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `date_played` datetime, `player_1_id` int NOT NULL, `player_2_id` int NOT NULL, `format` varchar(255) NOT NULL, `weight` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131214403')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateGamesTable (20200131214525)
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE `games` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `date_played` datetime, `winner` int, `loser` int, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131214525')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateScoresTable (20200131214645)
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE `scores` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `winner_points` int DEFAULT 0, `loser_points` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131214645')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddCurrentTournamentToPlayers (20200131222125)
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE `players` ADD `tournament_id` bigint[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX `index_players_on_tournament_id`  ON `players` (`tournament_id`) [0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE `players` ADD CONSTRAINT `fk_rails_f96ec8a72f`
+FOREIGN KEY (`tournament_id`)
+  REFERENCES `tournaments` (`id`)
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131222125')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddGameIdToScores (20200131222326)
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE `scores` ADD `game_id` bigint[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX `index_scores_on_game_id`  ON `scores` (`game_id`) [0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE `scores` ADD CONSTRAINT `fk_rails_41612d9bae`
+FOREIGN KEY (`game_id`)
+  REFERENCES `games` (`id`)
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131222326')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddMatchIdToGames (20200131222525)
+  [1m[35m (1.5ms)[0m  [1m[35mALTER TABLE `games` ADD `match_id` bigint[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX `index_games_on_match_id`  ON `games` (`match_id`) [0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE `games` ADD CONSTRAINT `fk_rails_faea86ff02`
+FOREIGN KEY (`match_id`)
+  REFERENCES `matches` (`id`)
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131222525')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddTounramentIdToMacthes (20200131222724)
+  [1m[35m (1.5ms)[0m  [1m[35mALTER TABLE `matches` ADD `tournament_id` bigint[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX `index_matches_on_tournament_id`  ON `matches` (`tournament_id`) [0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE `matches` ADD CONSTRAINT `fk_rails_700eaa2935`
+FOREIGN KEY (`tournament_id`)
+  REFERENCES `tournaments` (`id`)
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131222724')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2020-02-28 21:54:37.550054', '2020-02-28 21:54:37.550054')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('7536514140977839185')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (1, 'David Taylor', 'david.taylor5@hp.com', '2020-02-28 21:54:56.113988', '2020-02-28 21:54:56.113988')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (2, 'Nil Camacho', 'nil.camacho.ramonet@hp.com', '2020-02-28 21:54:56.116896', '2020-02-28 21:54:56.116896')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.1ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (3, 'Ruben Infante', 'ruben.infante@hp.com', '2020-02-28 21:54:56.119486', '2020-02-28 21:54:56.119486')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (4, 'Ryan Schreiber', 'ryan.schreiber@hp.com', '2020-02-28 21:54:56.122095', '2020-02-28 21:54:56.122095')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (5, 'Riley Dasch', 'riley.dasch@hp.com', '2020-02-28 21:54:56.124680', '2020-02-28 21:54:56.124680')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (6, 'Sandeep Venkata', 'sandeep.venkata@hp.com', '2020-02-28 21:54:56.127327', '2020-02-28 21:54:56.127327')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (7, 'Noah Collins', 'noah.collins@hp.com', '2020-02-28 21:54:56.129976', '2020-02-28 21:54:56.129976')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (8, 'Daniel De La Garza', 'Daniel.de.la.garza@hp.com', '2020-02-28 21:54:56.132578', '2020-02-28 21:54:56.132578')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (9, 'Erick Romero', 'erick.romero@hp.com', '2020-02-28 21:54:56.135196', '2020-02-28 21:54:56.135196')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `active`, `created_at`, `updated_at`) VALUES (10, 'Paul Min', 'paul.min@hp.com', FALSE, '2020-02-28 21:54:56.137903', '2020-02-28 21:54:56.137903')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (11, 'Isaac Chan', 'isaac.chan1@hp.com', '2020-02-28 21:54:56.140612', '2020-02-28 21:54:56.140612')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (12, 'David \"Thor\" Hagan', 'david.m.hagan@hp.com', '2020-02-28 21:54:56.143442', '2020-02-28 21:54:56.143442')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (13, 'Sheena Chen', 'sheena@hp.com', '2020-02-28 21:54:56.146168', '2020-02-28 21:54:56.146168')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (14, 'Bryce Tucker', 'bryce.tucker@hp.com', '2020-02-28 21:54:56.148882', '2020-02-28 21:54:56.148882')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `active`, `created_at`, `updated_at`) VALUES (15, 'Ernest Sliter', 'ernest.sliter@hp.com', FALSE, '2020-02-28 21:54:56.151495', '2020-02-28 21:54:56.151495')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (16, 'Luke Bockman', 'luke.bockman1@hp.com', '2020-02-28 21:54:56.154182', '2020-02-28 21:54:56.154182')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (17, 'Chris Timbreza', 'chris.timbreza@hp.com', '2020-02-28 21:54:56.156945', '2020-02-28 21:54:56.156945')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (18, 'Marwan elGendy', 'Marwan.elgendy@hp.com', '2020-02-28 21:54:56.159562', '2020-02-28 21:54:56.159562')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (19, 'Arpan Chakraborty', 'arpan.chakraborty@hp.com', '2020-02-28 21:54:56.162246', '2020-02-28 21:54:56.162246')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (20, 'Bryan Ginger', 'bryan.goss@hp.com', '2020-02-28 21:54:56.164980', '2020-02-28 21:54:56.164980')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (21, 'Nicholas Staub', 'Nicholas.staub@hp.com', '2020-02-28 21:54:56.167666', '2020-02-28 21:54:56.167666')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `active`, `created_at`, `updated_at`) VALUES (22, 'Petar Obradovic', 'petar.obradovic@hp.com', FALSE, '2020-02-28 21:54:56.170371', '2020-02-28 21:54:56.170371')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (23, 'Jake Sahli', 'jake.sahli@hp.com', '2020-02-28 21:54:56.182183', '2020-02-28 21:54:56.182183')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (24, 'Rowdy Webb', 'rowdy@hp.com', '2020-02-28 21:54:56.184851', '2020-02-28 21:54:56.184851')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (25, 'Vlad Shapoval', 'vladislav.shapoval@hp.com', '2020-02-28 21:54:56.187518', '2020-02-28 21:54:56.187518')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (26, 'Devin Uehling', 'devin.uehling@hp.com', '2020-02-28 21:54:56.190238', '2020-02-28 21:54:56.190238')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (27, 'Nate Martin', 'nate@hp.com', '2020-02-28 21:54:56.192842', '2020-02-28 21:54:56.192842')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (28, 'Wayne Lian', 'wen-yu.lian@hp.com', '2020-02-28 21:54:56.195395', '2020-02-28 21:54:56.195395')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (29, 'Bonny James', 'boniface.jam.mbuya@hp.com', '2020-02-28 21:54:56.198082', '2020-02-28 21:54:56.198082')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (30, 'Paul Osborne', 'paul.all.osborne@hp.com', '2020-02-28 21:54:56.200654', '2020-02-28 21:54:56.200654')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (31, 'Dina Sampath', 'dinakaran@hp.com', '2020-02-28 21:54:56.203267', '2020-02-28 21:54:56.203267')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTournament Create (0.3ms)[0m  [1m[32mINSERT INTO `tournaments` (`id`, `format`, `name`, `start_date`, `end_date`, `created_at`, `updated_at`) VALUES (1, 'Unseeded Double Elimination', 'Q2 2019 Ping Pong Tournament', '2019-03-01 12:00:00', '2019-04-01 12:00:00', '2020-02-28 21:54:56.219170', '2020-02-28 21:54:56.219170')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (1, 15, 22, 'Best of 3 to 21', '2020-02-28 21:54:56.231040', '2020-02-28 21:54:56.231040', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTournament Create (0.2ms)[0m  [1m[32mINSERT INTO `tournaments` (`format`, `name`, `start_date`, `end_date`, `created_at`, `updated_at`) VALUES ('Seeded Single Elimination Split Skill', 'Q3 2019 Ping Pong Tournament', '2019-07-01 12:00:00', '2019-09-01 12:00:00', '2020-02-28 21:54:56.233848', '2020-02-28 21:54:56.233848')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTournament Create (0.2ms)[0m  [1m[32mINSERT INTO `tournaments` (`format`, `name`, `start_date`, `end_date`, `created_at`, `updated_at`) VALUES ('Seeded Double Elimination', 'Q1 2020 Ping Pong Tournament', '2019-11-01 12:00:00', '2019-03-01 12:00:00', '2020-02-28 21:54:56.236649', '2020-02-28 21:54:56.236649')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for ::1 at 2020-02-28 13:58:37 -0800
+  [1m[35m (0.2ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 368)
+Started GET "/rails_admin" for ::1 at 2020-02-28 13:59:26 -0800
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/rails_admin"):
+  
+actionpack (6.0.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.1) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.1.1) lib/rack/method_override.rb:24:in `call'
+rack (2.1.1) lib/rack/runtime.rb:24:in `call'
+activesupport (6.0.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.1.1) lib/rack/sendfile.rb:113:in `call'
+actionpack (6.0.2.1) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.2.1) lib/rails/engine.rb:526:in `call'
+puma (4.3.1) lib/puma/configuration.rb:228:in `call'
+puma (4.3.1) lib/puma/server.rb:681:in `handle_request'
+puma (4.3.1) lib/puma/server.rb:472:in `process_client'
+puma (4.3.1) lib/puma/server.rb:328:in `block in run'
+puma (4.3.1) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/" for ::1 at 2020-02-28 13:59:45 -0800
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (Duration: 0.2ms | Allocations: 87)
+Completed 200 OK in 3804ms (Views: 3803.6ms | ActiveRecord: 0.0ms | Allocations: 318123)
+
+
+Started GET "/login" for ::1 at 2020-02-28 13:59:56 -0800
+Processing by LoginController#index as HTML
+  Rendering login/index.html.erb within layouts/application
+  Rendered login/index.html.erb within layouts/application (Duration: 0.4ms | Allocations: 89)
+Completed 200 OK in 10ms (Views: 8.9ms | ActiveRecord: 0.0ms | Allocations: 6246)
+
+
+Started GET "/signup" for ::1 at 2020-02-28 13:59:58 -0800
+Processing by SignupController#index as HTML
+  Rendering signup/index.html.erb within layouts/application
+  Rendered signup/index.html.erb within layouts/application (Duration: 0.9ms | Allocations: 82)
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.0ms | Allocations: 6235)
+
+
+Started GET "/admin" for ::1 at 2020-02-28 14:00:18 -0800
+Processing by RailsAdmin::MainController#dashboard as HTML
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `games`[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` ORDER BY `games`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `matches`[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` ORDER BY `matches`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `players`[0m
+  [1m[36mPlayer Load (0.2ms)[0m  [1m[34mSELECT `players`.* FROM `players` ORDER BY `players`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `scores`[0m
+  [1m[36mScore Load (0.2ms)[0m  [1m[34mSELECT `scores`.* FROM `scores` ORDER BY `scores`.`id` DESC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `tournaments`[0m
+  [1m[36mTournament Load (0.2ms)[0m  [1m[34mSELECT `tournaments`.* FROM `tournaments` ORDER BY `tournaments`.`id` DESC LIMIT 1[0m
+  Rendering /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/dashboard.html.haml within layouts/rails_admin/application (Duration: 30.8ms | Allocations: 18941)
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/layouts/rails_admin/_head.html.haml (Duration: 571.2ms | Allocations: 222079)
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/layouts/rails_admin/_secondary_navigation.html.haml (Duration: 2.7ms | Allocations: 3518)
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/layouts/rails_admin/_navigation.html.haml (Duration: 7.2ms | Allocations: 8986)
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/layouts/rails_admin/_sidebar_navigation.html.haml (Duration: 4.0ms | Allocations: 4205)
+  Rendering /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/layouts/rails_admin/pjax.html.haml
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/layouts/rails_admin/pjax.html.haml (Duration: 3.7ms | Allocations: 4859)
+Completed 200 OK in 934ms (Views: 628.7ms | ActiveRecord: 7.9ms | Allocations: 405369)
+
+
+Started GET "/admin/match?_pjax=%5Bdata-pjax-container%5D" for ::1 at 2020-02-28 14:00:21 -0800
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"match"}
+  Rendering /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` ORDER BY matches.id desc LIMIT 20 OFFSET 0[0m
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (Duration: 46.5ms | Allocations: 42591)
+Completed 200 OK in 54ms (Views: 50.0ms | ActiveRecord: 0.4ms | Allocations: 47096)
+
+
+Started GET "/admin/match/1?_pjax=%5Bdata-pjax-container%5D" for ::1 at 2020-02-28 14:00:26 -0800
+Processing by RailsAdmin::MainController#show as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"match", "id"=>"1"}
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 1 ORDER BY `matches`.`id` ASC LIMIT 1[0m
+  Rendering /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/show.html.haml within layouts/rails_admin/pjax
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`match_id` = 1[0m
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/show.html.haml within layouts/rails_admin/pjax (Duration: 19.3ms | Allocations: 11115)
+Completed 200 OK in 38ms (Views: 23.8ms | ActiveRecord: 0.7ms | Allocations: 19454)
+
+
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.4ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (1, 'David Taylor', 'david.taylor5@hp.com', '2020-02-29 00:26:02.821030', '2020-02-29 00:26:02.821030')[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment'[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (3.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS `ping_pong_manager`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE DATABASE `ping_pong_manager` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE DATABASE `ping_pong_manager` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT @@innodb_file_per_table = 1 AND @@innodb_file_format = 'Barracuda'[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) COLLATE utf8_general_ci NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) COLLATE utf8_general_ci NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('7536514140977839185', 0)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateUsersTable (20200131213955)
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE `players` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `rank` int DEFAULT 0, `active` tinyint(1) DEFAULT TRUE, `points` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131213955')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTournamentsTable (20200131214118)
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE `tournaments` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `format` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `start_date` datetime NOT NULL, `end_date` datetime NOT NULL, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131214118')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateMatchesTable (20200131214403)
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE `matches` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `date_played` datetime, `player_1_id` int NOT NULL, `player_2_id` int NOT NULL, `format` varchar(255) NOT NULL, `weight` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131214403')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateGamesTable (20200131214525)
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE `games` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `date_played` datetime, `winner` int, `loser` int, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131214525')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateScoresTable (20200131214645)
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE `scores` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `winner_points` int DEFAULT 0, `loser_points` int DEFAULT 0, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131214645')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddCurrentTournamentToPlayers (20200131222125)
+  [1m[35m (1.5ms)[0m  [1m[35mALTER TABLE `players` ADD `tournament_id` bigint[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX `index_players_on_tournament_id`  ON `players` (`tournament_id`) [0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE `players` ADD CONSTRAINT `fk_rails_f96ec8a72f`
+FOREIGN KEY (`tournament_id`)
+  REFERENCES `tournaments` (`id`)
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131222125')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddGameIdToScores (20200131222326)
+  [1m[35m (1.5ms)[0m  [1m[35mALTER TABLE `scores` ADD `game_id` bigint[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX `index_scores_on_game_id`  ON `scores` (`game_id`) [0m
+  [1m[35m (3.0ms)[0m  [1m[35mALTER TABLE `scores` ADD CONSTRAINT `fk_rails_41612d9bae`
+FOREIGN KEY (`game_id`)
+  REFERENCES `games` (`id`)
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131222326')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddMatchIdToGames (20200131222525)
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE `games` ADD `match_id` bigint[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX `index_games_on_match_id`  ON `games` (`match_id`) [0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE `games` ADD CONSTRAINT `fk_rails_faea86ff02`
+FOREIGN KEY (`match_id`)
+  REFERENCES `matches` (`id`)
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131222525')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddTounramentIdToMacthes (20200131222724)
+  [1m[35m (1.5ms)[0m  [1m[35mALTER TABLE `matches` ADD `tournament_id` bigint[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX `index_matches_on_tournament_id`  ON `matches` (`tournament_id`) [0m
+  [1m[35m (2.8ms)[0m  [1m[35mALTER TABLE `matches` ADD CONSTRAINT `fk_rails_700eaa2935`
+FOREIGN KEY (`tournament_id`)
+  REFERENCES `tournaments` (`id`)
+[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20200131222724')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2020-02-29 00:26:54.401967', '2020-02-29 00:26:54.401967')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT RELEASE_LOCK('7536514140977839185')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (1, 'David Taylor', 'david.taylor5@hp.com', '2020-02-29 00:27:01.804426', '2020-02-29 00:27:01.804426')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (2, 'Nil Camacho', 'nil.camacho.ramonet@hp.com', '2020-02-29 00:27:01.807292', '2020-02-29 00:27:01.807292')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (3, 'Ruben Infante', 'ruben.infante@hp.com', '2020-02-29 00:27:01.809862', '2020-02-29 00:27:01.809862')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (4, 'Ryan Schreiber', 'ryan.schreiber@hp.com', '2020-02-29 00:27:01.812456', '2020-02-29 00:27:01.812456')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (5, 'Riley Dasch', 'riley.dasch@hp.com', '2020-02-29 00:27:01.815086', '2020-02-29 00:27:01.815086')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (6, 'Sandeep Venkata', 'sandeep.venkata@hp.com', '2020-02-29 00:27:01.817691', '2020-02-29 00:27:01.817691')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (7, 'Noah Collins', 'noah.collins@hp.com', '2020-02-29 00:27:01.820238', '2020-02-29 00:27:01.820238')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (8, 'Daniel De La Garza', 'Daniel.de.la.garza@hp.com', '2020-02-29 00:27:01.822824', '2020-02-29 00:27:01.822824')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.1ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (9, 'Erick Romero', 'erick.romero@hp.com', '2020-02-29 00:27:01.825562', '2020-02-29 00:27:01.825562')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.1ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `active`, `created_at`, `updated_at`) VALUES (10, 'Paul Min', 'paul.min@hp.com', FALSE, '2020-02-29 00:27:01.828119', '2020-02-29 00:27:01.828119')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (11, 'Isaac Chan', 'isaac.chan1@hp.com', '2020-02-29 00:27:01.830705', '2020-02-29 00:27:01.830705')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (12, 'David \"Thor\" Hagan', 'david.m.hagan@hp.com', '2020-02-29 00:27:01.833426', '2020-02-29 00:27:01.833426')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (13, 'Sheena Chen', 'sheena@hp.com', '2020-02-29 00:27:01.836026', '2020-02-29 00:27:01.836026')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (14, 'Bryce Tucker', 'bryce.tucker@hp.com', '2020-02-29 00:27:01.838723', '2020-02-29 00:27:01.838723')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `active`, `created_at`, `updated_at`) VALUES (15, 'Ernest Sliter', 'ernest.sliter@hp.com', FALSE, '2020-02-29 00:27:01.841446', '2020-02-29 00:27:01.841446')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (16, 'Luke Bockman', 'luke.bockman1@hp.com', '2020-02-29 00:27:01.844153', '2020-02-29 00:27:01.844153')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.1ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (17, 'Chris Timbreza', 'chris.timbreza@hp.com', '2020-02-29 00:27:01.846831', '2020-02-29 00:27:01.846831')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (18, 'Marwan elGendy', 'Marwan.elgendy@hp.com', '2020-02-29 00:27:01.849454', '2020-02-29 00:27:01.849454')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (19, 'Arpan Chakraborty', 'arpan.chakraborty@hp.com', '2020-02-29 00:27:01.852104', '2020-02-29 00:27:01.852104')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (20, 'Bryan Ginger', 'bryan.goss@hp.com', '2020-02-29 00:27:01.854806', '2020-02-29 00:27:01.854806')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (21, 'Nicholas Staub', 'Nicholas.staub@hp.com', '2020-02-29 00:27:01.857499', '2020-02-29 00:27:01.857499')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `active`, `created_at`, `updated_at`) VALUES (22, 'Petar Obradovic', 'petar.obradovic@hp.com', FALSE, '2020-02-29 00:27:01.860173', '2020-02-29 00:27:01.860173')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.1ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (23, 'Jake Sahli', 'jake.sahli@hp.com', '2020-02-29 00:27:01.871267', '2020-02-29 00:27:01.871267')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (24, 'Rowdy Webb', 'rowdy@hp.com', '2020-02-29 00:27:01.873904', '2020-02-29 00:27:01.873904')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (25, 'Vlad Shapoval', 'vladislav.shapoval@hp.com', '2020-02-29 00:27:01.876447', '2020-02-29 00:27:01.876447')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (26, 'Devin Uehling', 'devin.uehling@hp.com', '2020-02-29 00:27:01.879043', '2020-02-29 00:27:01.879043')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (27, 'Nate Martin', 'nate@hp.com', '2020-02-29 00:27:01.881716', '2020-02-29 00:27:01.881716')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.1ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (28, 'Wayne Lian', 'wen-yu.lian@hp.com', '2020-02-29 00:27:01.884340', '2020-02-29 00:27:01.884340')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.1ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (29, 'Bonny James', 'boniface.jam.mbuya@hp.com', '2020-02-29 00:27:01.886914', '2020-02-29 00:27:01.886914')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.1ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (30, 'Paul Osborne', 'paul.all.osborne@hp.com', '2020-02-29 00:27:01.889490', '2020-02-29 00:27:01.889490')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.1ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `created_at`, `updated_at`) VALUES (31, 'Dina Sampath', 'dinakaran@hp.com', '2020-02-29 00:27:01.892061', '2020-02-29 00:27:01.892061')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPlayer Create (0.2ms)[0m  [1m[32mINSERT INTO `players` (`id`, `name`, `email`, `active`, `created_at`, `updated_at`) VALUES (32, 'Shane Zhao', 'UNAVAILABLE', FALSE, '2020-02-29 00:27:01.894566', '2020-02-29 00:27:01.894566')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTournament Create (0.2ms)[0m  [1m[32mINSERT INTO `tournaments` (`id`, `format`, `name`, `start_date`, `end_date`, `created_at`, `updated_at`) VALUES (1, 'Unseeded Double Elimination Tournament', 'Q2 2019 Ping Pong Tournament', '2019-03-01 12:00:00', '2019-04-01 12:00:00', '2020-02-29 00:27:01.906280', '2020-02-29 00:27:01.906280')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (1, 15, 22, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:01.917799', '2020-02-29 00:27:01.917799', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 1 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (1, 15, 22, '2020-02-29 00:27:01.934680', '2020-02-29 00:27:01.934680', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 1 LIMIT 1[0m
+  [1m[36mScore Create (0.1ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (1, 21, 18, '2020-02-29 00:27:01.947161', '2020-02-29 00:27:01.947161', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 1 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (2, 15, 22, '2020-02-29 00:27:01.951074', '2020-02-29 00:27:01.951074', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 2 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (2, 21, 16, '2020-02-29 00:27:01.955514', '2020-02-29 00:27:01.955514', 2)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (2, 14, 21, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:01.957467', '2020-02-29 00:27:01.957467', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 2 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (3, 14, 21, '2020-02-29 00:27:01.962584', '2020-02-29 00:27:01.962584', 2)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.9ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 3 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (3, 21, 5, '2020-02-29 00:27:01.975153', '2020-02-29 00:27:01.975153', 3)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 2 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (4, 14, 21, '2020-02-29 00:27:01.979075', '2020-02-29 00:27:01.979075', 2)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 4 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (4, 21, 14, '2020-02-29 00:27:01.983254', '2020-02-29 00:27:01.983254', 4)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (3, 18, 2, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:01.985167', '2020-02-29 00:27:01.985167', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 3 LIMIT 1[0m
+  [1m[36mGame Create (0.1ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (5, 2, 18, '2020-02-29 00:27:01.989998', '2020-02-29 00:27:01.989998', 3)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 5 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (5, 21, 9, '2020-02-29 00:27:01.994045', '2020-02-29 00:27:01.994045', 5)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 3 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (6, 2, 18, '2020-02-29 00:27:01.997793', '2020-02-29 00:27:01.997793', 3)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 6 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (6, 21, 10, '2020-02-29 00:27:02.001637', '2020-02-29 00:27:02.001637', 6)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (4, 1, 15, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.003525', '2020-02-29 00:27:02.003525', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 4 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (7, 1, 15, '2020-02-29 00:27:02.008239', '2020-02-29 00:27:02.008239', 4)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 7 LIMIT 1[0m
+  [1m[36mScore Create (0.1ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (7, 21, 4, '2020-02-29 00:27:02.012224', '2020-02-29 00:27:02.012224', 7)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 4 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (8, 1, 15, '2020-02-29 00:27:02.016034', '2020-02-29 00:27:02.016034', 4)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 8 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (8, 21, 7, '2020-02-29 00:27:02.019981', '2020-02-29 00:27:02.019981', 8)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (5, 11, 12, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.021874', '2020-02-29 00:27:02.021874', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 5 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (9, 11, 12, '2020-02-29 00:27:02.026679', '2020-02-29 00:27:02.026679', 5)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 9 LIMIT 1[0m
+  [1m[36mScore Create (0.1ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (9, 21, 8, '2020-02-29 00:27:02.030536', '2020-02-29 00:27:02.030536', 9)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 5 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (10, 11, 12, '2020-02-29 00:27:02.034212', '2020-02-29 00:27:02.034212', 5)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 10 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (10, 21, 12, '2020-02-29 00:27:02.038069', '2020-02-29 00:27:02.038069', 10)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (6, 5, 32, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.040014', '2020-02-29 00:27:02.040014', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 6 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (11, 5, 32, '2020-02-29 00:27:02.044845', '2020-02-29 00:27:02.044845', 6)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 11 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (11, 21, 15, '2020-02-29 00:27:02.048660', '2020-02-29 00:27:02.048660', 11)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 6 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (12, 32, 5, '2020-02-29 00:27:02.057403', '2020-02-29 00:27:02.057403', 6)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 12 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (12, 21, 16, '2020-02-29 00:27:02.061796', '2020-02-29 00:27:02.061796', 12)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 6 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (13, 5, 32, '2020-02-29 00:27:02.065547', '2020-02-29 00:27:02.065547', 6)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 13 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (13, 21, 10, '2020-02-29 00:27:02.069374', '2020-02-29 00:27:02.069374', 13)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (7, 3, 16, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.071215', '2020-02-29 00:27:02.071215', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 7 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (14, 3, 16, '2020-02-29 00:27:02.076031', '2020-02-29 00:27:02.076031', 7)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 14 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (14, 21, 14, '2020-02-29 00:27:02.079875', '2020-02-29 00:27:02.079875', 14)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 7 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (15, 3, 16, '2020-02-29 00:27:02.083687', '2020-02-29 00:27:02.083687', 7)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 15 LIMIT 1[0m
+  [1m[36mScore Create (0.1ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (15, 21, 9, '2020-02-29 00:27:02.087653', '2020-02-29 00:27:02.087653', 15)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (8, 7, 14, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.089521', '2020-02-29 00:27:02.089521', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 8 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (16, 7, 14, '2020-02-29 00:27:02.094248', '2020-02-29 00:27:02.094248', 8)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 16 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (16, 21, 2, '2020-02-29 00:27:02.098025', '2020-02-29 00:27:02.098025', 16)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 8 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (17, 7, 14, '2020-02-29 00:27:02.101693', '2020-02-29 00:27:02.101693', 8)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 17 LIMIT 1[0m
+  [1m[36mScore Create (0.1ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (17, 21, 8, '2020-02-29 00:27:02.105667', '2020-02-29 00:27:02.105667', 17)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (9, 4, 19, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.107522', '2020-02-29 00:27:02.107522', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 9 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (18, 4, 19, '2020-02-29 00:27:02.111915', '2020-02-29 00:27:02.111915', 9)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 18 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (18, 21, 13, '2020-02-29 00:27:02.115666', '2020-02-29 00:27:02.115666', 18)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 9 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (19, 4, 19, '2020-02-29 00:27:02.119288', '2020-02-29 00:27:02.119288', 9)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 19 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (19, 21, 19, '2020-02-29 00:27:02.123174', '2020-02-29 00:27:02.123174', 19)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (10, 13, 9, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.125109', '2020-02-29 00:27:02.125109', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 10 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (20, 13, 9, '2020-02-29 00:27:02.129676', '2020-02-29 00:27:02.129676', 10)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 20 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (20, 21, 17, '2020-02-29 00:27:02.133510', '2020-02-29 00:27:02.133510', 20)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 10 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (21, 9, 13, '2020-02-29 00:27:02.141852', '2020-02-29 00:27:02.141852', 10)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 21 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (21, 21, 17, '2020-02-29 00:27:02.145896', '2020-02-29 00:27:02.145896', 21)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 10 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (22, 9, 13, '2020-02-29 00:27:02.149677', '2020-02-29 00:27:02.149677', 10)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 22 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (22, 21, 19, '2020-02-29 00:27:02.153589', '2020-02-29 00:27:02.153589', 22)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (11, 8, 2, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.155521', '2020-02-29 00:27:02.155521', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 11 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (23, 2, 8, '2020-02-29 00:27:02.160222', '2020-02-29 00:27:02.160222', 11)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 23 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (23, 21, 16, '2020-02-29 00:27:02.164031', '2020-02-29 00:27:02.164031', 23)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 11 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (24, 2, 8, '2020-02-29 00:27:02.167777', '2020-02-29 00:27:02.167777', 11)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 24 LIMIT 1[0m
+  [1m[36mScore Create (0.1ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (24, 21, 14, '2020-02-29 00:27:02.171617', '2020-02-29 00:27:02.171617', 24)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (12, 8, 22, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.173566', '2020-02-29 00:27:02.173566', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 12 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (25, 8, 22, '2020-02-29 00:27:02.178154', '2020-02-29 00:27:02.178154', 12)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 25 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (25, 21, 13, '2020-02-29 00:27:02.182037', '2020-02-29 00:27:02.182037', 25)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 12 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (26, 8, 22, '2020-02-29 00:27:02.185798', '2020-02-29 00:27:02.185798', 12)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 26 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (26, 21, 8, '2020-02-29 00:27:02.189738', '2020-02-29 00:27:02.189738', 26)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (13, 16, 21, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.191731', '2020-02-29 00:27:02.191731', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 13 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (27, 16, 22, '2020-02-29 00:27:02.196368', '2020-02-29 00:27:02.196368', 13)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 27 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (27, 21, 15, '2020-02-29 00:27:02.200270', '2020-02-29 00:27:02.200270', 27)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 13 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (28, 16, 22, '2020-02-29 00:27:02.204014', '2020-02-29 00:27:02.204014', 13)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 28 LIMIT 1[0m
+  [1m[36mScore Create (0.1ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (28, 25, 23, '2020-02-29 00:27:02.207909', '2020-02-29 00:27:02.207909', 28)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.1ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (14, 18, 15, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.209760', '2020-02-29 00:27:02.209760', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 14 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (29, 15, 18, '2020-02-29 00:27:02.214169', '2020-02-29 00:27:02.214169', 14)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 29 LIMIT 1[0m
+  [1m[36mScore Create (0.1ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (29, 21, 16, '2020-02-29 00:27:02.222370', '2020-02-29 00:27:02.222370', 29)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 14 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (30, 18, 15, '2020-02-29 00:27:02.226163', '2020-02-29 00:27:02.226163', 14)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 30 LIMIT 1[0m
+  [1m[36mScore Create (0.1ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (30, 21, 17, '2020-02-29 00:27:02.230027', '2020-02-29 00:27:02.230027', 30)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 14 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (31, 18, 15, '2020-02-29 00:27:02.233776', '2020-02-29 00:27:02.233776', 14)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 31 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (31, 21, 19, '2020-02-29 00:27:02.237706', '2020-02-29 00:27:02.237706', 31)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (15, 8, 13, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.239697', '2020-02-29 00:27:02.239697', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 15 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (32, 8, 13, '2020-02-29 00:27:02.244386', '2020-02-29 00:27:02.244386', 15)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 32 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (32, 21, 14, '2020-02-29 00:27:02.248346', '2020-02-29 00:27:02.248346', 32)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 15 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (33, 8, 13, '2020-02-29 00:27:02.252229', '2020-02-29 00:27:02.252229', 15)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 33 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (33, 21, 15, '2020-02-29 00:27:02.256254', '2020-02-29 00:27:02.256254', 33)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (16, 19, 14, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.258164', '2020-02-29 00:27:02.258164', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 16 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (34, 19, 14, '2020-02-29 00:27:02.262679', '2020-02-29 00:27:02.262679', 16)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 34 LIMIT 1[0m
+  [1m[36mScore Create (0.1ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (34, 21, 17, '2020-02-29 00:27:02.266626', '2020-02-29 00:27:02.266626', 34)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 16 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (35, 19, 14, '2020-02-29 00:27:02.270423', '2020-02-29 00:27:02.270423', 16)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 35 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (35, 21, 9, '2020-02-29 00:27:02.274425', '2020-02-29 00:27:02.274425', 35)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (17, 16, 32, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.276267', '2020-02-29 00:27:02.276267', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 17 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (36, 32, 16, '2020-02-29 00:27:02.280841', '2020-02-29 00:27:02.280841', 17)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 36 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (36, 21, 17, '2020-02-29 00:27:02.284716', '2020-02-29 00:27:02.284716', 36)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 17 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (37, 16, 32, '2020-02-29 00:27:02.288423', '2020-02-29 00:27:02.288423', 17)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 37 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (37, 21, 16, '2020-02-29 00:27:02.292714', '2020-02-29 00:27:02.292714', 37)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 17 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (38, 32, 16, '2020-02-29 00:27:02.296312', '2020-02-29 00:27:02.296312', 17)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 38 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (38, 21, 16, '2020-02-29 00:27:02.304428', '2020-02-29 00:27:02.304428', 38)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (18, 12, 18, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.306373', '2020-02-29 00:27:02.306373', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 18 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (39, 12, 18, '2020-02-29 00:27:02.311071', '2020-02-29 00:27:02.311071', 18)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 39 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (39, 21, 11, '2020-02-29 00:27:02.314959', '2020-02-29 00:27:02.314959', 39)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 18 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (40, 18, 12, '2020-02-29 00:27:02.318642', '2020-02-29 00:27:02.318642', 18)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 40 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (40, 22, 20, '2020-02-29 00:27:02.322543', '2020-02-29 00:27:02.322543', 40)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 18 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (41, 12, 18, '2020-02-29 00:27:02.326403', '2020-02-29 00:27:02.326403', 18)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 41 LIMIT 1[0m
+  [1m[36mScore Create (0.1ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (41, 21, 12, '2020-02-29 00:27:02.330380', '2020-02-29 00:27:02.330380', 41)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (19, 1, 11, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.332327', '2020-02-29 00:27:02.332327', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 19 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (42, 1, 11, '2020-02-29 00:27:02.336957', '2020-02-29 00:27:02.336957', 19)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 42 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (42, 21, 10, '2020-02-29 00:27:02.340939', '2020-02-29 00:27:02.340939', 42)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 19 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (43, 1, 11, '2020-02-29 00:27:02.344656', '2020-02-29 00:27:02.344656', 19)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 43 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (43, 21, 15, '2020-02-29 00:27:02.348587', '2020-02-29 00:27:02.348587', 43)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (20, 5, 3, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.350490', '2020-02-29 00:27:02.350490', 1)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 20 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (44, 3, 5, '2020-02-29 00:27:02.355229', '2020-02-29 00:27:02.355229', 20)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 44 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (44, 22, 20, '2020-02-29 00:27:02.359217', '2020-02-29 00:27:02.359217', 44)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 20 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (45, 3, 5, '2020-02-29 00:27:02.362956', '2020-02-29 00:27:02.362956', 20)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 45 LIMIT 1[0m
+  [1m[36mScore Create (0.1ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (45, 21, 10, '2020-02-29 00:27:02.366833', '2020-02-29 00:27:02.366833', 45)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (21, 7, 4, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.368697', '2020-02-29 00:27:02.368697', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 21 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (46, 7, 4, '2020-02-29 00:27:02.373562', '2020-02-29 00:27:02.373562', 21)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 46 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (46, 21, 17, '2020-02-29 00:27:02.377382', '2020-02-29 00:27:02.377382', 46)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 21 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (47, 4, 7, '2020-02-29 00:27:02.385451', '2020-02-29 00:27:02.385451', 21)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 47 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (47, 21, 4, '2020-02-29 00:27:02.389387', '2020-02-29 00:27:02.389387', 47)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 21 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (48, 7, 4, '2020-02-29 00:27:02.393463', '2020-02-29 00:27:02.393463', 21)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 48 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (48, 21, 17, '2020-02-29 00:27:02.397295', '2020-02-29 00:27:02.397295', 48)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (22, 9, 2, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.399179', '2020-02-29 00:27:02.399179', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 22 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (49, 9, 2, '2020-02-29 00:27:02.403811', '2020-02-29 00:27:02.403811', 22)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 49 LIMIT 1[0m
+  [1m[36mScore Create (0.1ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (49, 21, 11, '2020-02-29 00:27:02.407723', '2020-02-29 00:27:02.407723', 49)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 22 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (50, 2, 9, '2020-02-29 00:27:02.411571', '2020-02-29 00:27:02.411571', 22)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 50 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (50, 21, 7, '2020-02-29 00:27:02.415477', '2020-02-29 00:27:02.415477', 50)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 22 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (51, 2, 9, '2020-02-29 00:27:02.419141', '2020-02-29 00:27:02.419141', 22)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 51 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (51, 21, 16, '2020-02-29 00:27:02.423077', '2020-02-29 00:27:02.423077', 51)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (23, 5, 8, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.425078', '2020-02-29 00:27:02.425078', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 23 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (52, 5, 8, '2020-02-29 00:27:02.429869', '2020-02-29 00:27:02.429869', 23)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 52 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (52, 21, 18, '2020-02-29 00:27:02.433842', '2020-02-29 00:27:02.433842', 52)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 23 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (53, 5, 8, '2020-02-29 00:27:02.437613', '2020-02-29 00:27:02.437613', 23)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 53 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (53, 21, 19, '2020-02-29 00:27:02.441588', '2020-02-29 00:27:02.441588', 53)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (24, 11, 19, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.443443', '2020-02-29 00:27:02.443443', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 24 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (54, 11, 19, '2020-02-29 00:27:02.448161', '2020-02-29 00:27:02.448161', 24)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 54 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (54, 21, 9, '2020-02-29 00:27:02.452049', '2020-02-29 00:27:02.452049', 54)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 24 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (55, 19, 11, '2020-02-29 00:27:02.455918', '2020-02-29 00:27:02.455918', 24)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.7ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 55 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (55, 21, 16, '2020-02-29 00:27:02.464080', '2020-02-29 00:27:02.464080', 55)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 24 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (56, 11, 19, '2020-02-29 00:27:02.467830', '2020-02-29 00:27:02.467830', 24)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 56 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (56, 21, 14, '2020-02-29 00:27:02.471795', '2020-02-29 00:27:02.471795', 56)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (25, 9, 32, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.473800', '2020-02-29 00:27:02.473800', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 25 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (57, 9, 32, '2020-02-29 00:27:02.478630', '2020-02-29 00:27:02.478630', 25)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 57 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (57, 21, 17, '2020-02-29 00:27:02.482628', '2020-02-29 00:27:02.482628', 57)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 25 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (58, 32, 9, '2020-02-29 00:27:02.486448', '2020-02-29 00:27:02.486448', 25)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 58 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (58, 21, 17, '2020-02-29 00:27:02.490514', '2020-02-29 00:27:02.490514', 58)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 25 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (59, 9, 32, '2020-02-29 00:27:02.494684', '2020-02-29 00:27:02.494684', 25)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 59 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (59, 21, 19, '2020-02-29 00:27:02.498512', '2020-02-29 00:27:02.498512', 59)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (26, 4, 12, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.500323', '2020-02-29 00:27:02.500323', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 26 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (60, 4, 12, '2020-02-29 00:27:02.504945', '2020-02-29 00:27:02.504945', 26)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 60 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (60, 21, 16, '2020-02-29 00:27:02.508913', '2020-02-29 00:27:02.508913', 60)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 26 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (61, 4, 12, '2020-02-29 00:27:02.512702', '2020-02-29 00:27:02.512702', 26)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 61 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (61, 21, 19, '2020-02-29 00:27:02.516520', '2020-02-29 00:27:02.516520', 61)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (27, 5, 11, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.518329', '2020-02-29 00:27:02.518329', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 27 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (62, 5, 11, '2020-02-29 00:27:02.522958', '2020-02-29 00:27:02.522958', 27)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 62 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (62, 21, 16, '2020-02-29 00:27:02.526918', '2020-02-29 00:27:02.526918', 62)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 27 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (63, 5, 11, '2020-02-29 00:27:02.530800', '2020-02-29 00:27:02.530800', 27)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 63 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (63, 21, 15, '2020-02-29 00:27:02.534677', '2020-02-29 00:27:02.534677', 63)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (28, 9, 4, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.536546', '2020-02-29 00:27:02.536546', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.7ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 28 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (64, 4, 9, '2020-02-29 00:27:02.545846', '2020-02-29 00:27:02.545846', 28)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 64 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (64, 21, 17, '2020-02-29 00:27:02.549731', '2020-02-29 00:27:02.549731', 64)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 28 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (65, 4, 9, '2020-02-29 00:27:02.553628', '2020-02-29 00:27:02.553628', 28)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 65 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (65, 25, 23, '2020-02-29 00:27:02.557625', '2020-02-29 00:27:02.557625', 65)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (29, 1, 3, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.559451', '2020-02-29 00:27:02.559451', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 29 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (66, 1, 3, '2020-02-29 00:27:02.564077', '2020-02-29 00:27:02.564077', 29)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 66 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (66, 21, 10, '2020-02-29 00:27:02.567963', '2020-02-29 00:27:02.567963', 66)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 29 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (67, 1, 3, '2020-02-29 00:27:02.571941', '2020-02-29 00:27:02.571941', 29)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 67 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (67, 21, 12, '2020-02-29 00:27:02.576040', '2020-02-29 00:27:02.576040', 67)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (30, 7, 2, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.577864', '2020-02-29 00:27:02.577864', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 30 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (68, 2, 7, '2020-02-29 00:27:02.582598', '2020-02-29 00:27:02.582598', 30)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 68 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (68, 21, 12, '2020-02-29 00:27:02.586405', '2020-02-29 00:27:02.586405', 68)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 30 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (69, 2, 7, '2020-02-29 00:27:02.590463', '2020-02-29 00:27:02.590463', 30)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 69 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (69, 21, 6, '2020-02-29 00:27:02.594628', '2020-02-29 00:27:02.594628', 69)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (31, 3, 5, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.596493', '2020-02-29 00:27:02.596493', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 31 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (70, 3, 5, '2020-02-29 00:27:02.601107', '2020-02-29 00:27:02.601107', 31)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 70 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (70, 21, 10, '2020-02-29 00:27:02.605010', '2020-02-29 00:27:02.605010', 70)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 31 LIMIT 1[0m
+  [1m[36mGame Create (0.1ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (71, 3, 5, '2020-02-29 00:27:02.608768', '2020-02-29 00:27:02.608768', 31)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 71 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (71, 21, 18, '2020-02-29 00:27:02.612629', '2020-02-29 00:27:02.612629', 71)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (32, 7, 4, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.614492', '2020-02-29 00:27:02.614492', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 32 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (72, 4, 7, '2020-02-29 00:27:02.618990', '2020-02-29 00:27:02.618990', 32)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 72 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (72, 21, 12, '2020-02-29 00:27:02.627266', '2020-02-29 00:27:02.627266', 72)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 32 LIMIT 1[0m
+  [1m[36mGame Create (0.1ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (73, 7, 4, '2020-02-29 00:27:02.631079', '2020-02-29 00:27:02.631079', 32)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 73 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (73, 21, 18, '2020-02-29 00:27:02.635015', '2020-02-29 00:27:02.635015', 73)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 32 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (74, 7, 4, '2020-02-29 00:27:02.638921', '2020-02-29 00:27:02.638921', 32)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 74 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (74, 23, 21, '2020-02-29 00:27:02.642881', '2020-02-29 00:27:02.642881', 74)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (33, 3, 7, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.644769', '2020-02-29 00:27:02.644769', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 33 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (75, 3, 7, '2020-02-29 00:27:02.649494', '2020-02-29 00:27:02.649494', 33)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 75 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (75, 21, 13, '2020-02-29 00:27:02.653488', '2020-02-29 00:27:02.653488', 75)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 33 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (76, 3, 7, '2020-02-29 00:27:02.657360', '2020-02-29 00:27:02.657360', 33)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 76 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (76, 21, 14, '2020-02-29 00:27:02.661149', '2020-02-29 00:27:02.661149', 76)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (34, 1, 2, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.662950', '2020-02-29 00:27:02.662950', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 34 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (77, 1, 2, '2020-02-29 00:27:02.667540', '2020-02-29 00:27:02.667540', 34)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 77 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (77, 21, 7, '2020-02-29 00:27:02.671579', '2020-02-29 00:27:02.671579', 77)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 34 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (78, 1, 2, '2020-02-29 00:27:02.675562', '2020-02-29 00:27:02.675562', 34)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 78 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (78, 21, 12, '2020-02-29 00:27:02.679391', '2020-02-29 00:27:02.679391', 78)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (35, 2, 3, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.681190', '2020-02-29 00:27:02.681190', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 35 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (79, 2, 3, '2020-02-29 00:27:02.685776', '2020-02-29 00:27:02.685776', 35)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 79 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (79, 21, 16, '2020-02-29 00:27:02.689820', '2020-02-29 00:27:02.689820', 79)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 35 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (80, 2, 3, '2020-02-29 00:27:02.693974', '2020-02-29 00:27:02.693974', 35)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 80 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (80, 21, 7, '2020-02-29 00:27:02.697898', '2020-02-29 00:27:02.697898', 80)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (36, 1, 2, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.699762', '2020-02-29 00:27:02.699762', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 36 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (81, 2, 1, '2020-02-29 00:27:02.708790', '2020-02-29 00:27:02.708790', 36)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 81 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (81, 21, 17, '2020-02-29 00:27:02.712696', '2020-02-29 00:27:02.712696', 81)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 36 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (82, 2, 1, '2020-02-29 00:27:02.716451', '2020-02-29 00:27:02.716451', 36)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 82 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (82, 21, 18, '2020-02-29 00:27:02.720293', '2020-02-29 00:27:02.720293', 82)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Create (0.2ms)[0m  [1m[32mINSERT INTO `matches` (`id`, `player_1_id`, `player_2_id`, `format`, `created_at`, `updated_at`, `tournament_id`) VALUES (37, 1, 2, 'Best of 3 Games to 21 Points', '2020-02-29 00:27:02.722181', '2020-02-29 00:27:02.722181', 1)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 37 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (83, 2, 1, '2020-02-29 00:27:02.726941', '2020-02-29 00:27:02.726941', 37)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 83 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (83, 21, 19, '2020-02-29 00:27:02.730853', '2020-02-29 00:27:02.730853', 83)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 37 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (84, 1, 2, '2020-02-29 00:27:02.734694', '2020-02-29 00:27:02.734694', 37)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 84 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (84, 21, 18, '2020-02-29 00:27:02.738537', '2020-02-29 00:27:02.738537', 84)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` = 37 LIMIT 1[0m
+  [1m[36mGame Create (0.2ms)[0m  [1m[32mINSERT INTO `games` (`id`, `winner`, `loser`, `created_at`, `updated_at`, `match_id`) VALUES (85, 1, 2, '2020-02-29 00:27:02.742513', '2020-02-29 00:27:02.742513', 37)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` WHERE `games`.`id` = 85 LIMIT 1[0m
+  [1m[36mScore Create (0.2ms)[0m  [1m[32mINSERT INTO `scores` (`id`, `winner_points`, `loser_points`, `created_at`, `updated_at`, `game_id`) VALUES (85, 21, 12, '2020-02-29 00:27:02.746338', '2020-02-29 00:27:02.746338', 85)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTournament Create (0.2ms)[0m  [1m[32mINSERT INTO `tournaments` (`id`, `format`, `name`, `start_date`, `end_date`, `created_at`, `updated_at`) VALUES (2, 'Seeded Single Elimination Split Skill Tournament', 'Q3 2019 Ping Pong Tournament', '2019-07-01 12:00:00', '2019-09-01 12:00:00', '2020-02-29 00:27:02.748318', '2020-02-29 00:27:02.748318')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTournament Create (0.1ms)[0m  [1m[32mINSERT INTO `tournaments` (`id`, `format`, `name`, `start_date`, `end_date`, `created_at`, `updated_at`) VALUES (3, 'Seeded Double Elimination Tournament', 'Q1 2020 Ping Pong Tournament', '2019-11-01 12:00:00', '2019-03-01 12:00:00', '2020-02-29 00:27:02.751459', '2020-02-29 00:27:02.751459')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/admin/match" for ::1 at 2020-02-28 16:27:06 -0800
+  [1m[35m (0.2ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"model_name"=>"match"}
+  Rendering /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/application
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` ORDER BY matches.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `matches`[0m
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/application (Duration: 108.7ms | Allocations: 76236)
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/layouts/rails_admin/_head.html.haml (Duration: 25.0ms | Allocations: 28201)
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/layouts/rails_admin/_secondary_navigation.html.haml (Duration: 0.6ms | Allocations: 326)
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/layouts/rails_admin/_navigation.html.haml (Duration: 0.9ms | Allocations: 534)
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/layouts/rails_admin/_sidebar_navigation.html.haml (Duration: 5.8ms | Allocations: 4434)
+  Rendering /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/layouts/rails_admin/pjax.html.haml
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/layouts/rails_admin/pjax.html.haml (Duration: 2.6ms | Allocations: 1958)
+Completed 200 OK in 149ms (Views: 143.9ms | ActiveRecord: 0.7ms | Allocations: 115247)
+
+
+Started GET "/admin/player?_pjax=%5Bdata-pjax-container%5D" for ::1 at 2020-02-28 16:27:10 -0800
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"player"}
+  Rendering /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mPlayer Load (0.5ms)[0m  [1m[34mSELECT `players`.* FROM `players` ORDER BY players.id desc LIMIT 20 OFFSET 0[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `players`[0m
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (Duration: 99.8ms | Allocations: 64922)
+Completed 200 OK in 114ms (Views: 102.3ms | ActiveRecord: 0.8ms | Allocations: 73865)
+
+
+Started GET "/admin/tournament?_pjax=%5Bdata-pjax-container%5D" for ::1 at 2020-02-28 16:27:15 -0800
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"tournament"}
+  Rendering /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mTournament Load (0.4ms)[0m  [1m[34mSELECT `tournaments`.* FROM `tournaments` ORDER BY tournaments.id desc LIMIT 20 OFFSET 0[0m
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (Duration: 21.1ms | Allocations: 16252)
+Completed 200 OK in 35ms (Views: 25.2ms | ActiveRecord: 0.4ms | Allocations: 24151)
+
+
+Started GET "/admin/game?_pjax=%5Bdata-pjax-container%5D" for ::1 at 2020-02-28 16:27:20 -0800
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "model_name"=>"game"}
+  Rendering /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT `games`.* FROM `games` ORDER BY games.id desc LIMIT 20 OFFSET 0[0m
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` IN (37, 36, 35, 34, 33, 32, 31, 30, 29)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `games`[0m
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (Duration: 136.0ms | Allocations: 72511)
+Completed 200 OK in 148ms (Views: 138.1ms | ActiveRecord: 1.1ms | Allocations: 80567)
+
+
+Started GET "/admin/game?_pjax=%5Bdata-pjax-container%5D&page=2&sort=id&sort_reverse=false&_pjax=%5Bdata-pjax-container%5D" for ::1 at 2020-02-28 16:27:36 -0800
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "page"=>"2", "sort"=>"id", "sort_reverse"=>"false", "model_name"=>"game"}
+  Rendering /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT `games`.* FROM `games` ORDER BY games.id desc LIMIT 20 OFFSET 20[0m
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` IN (28, 27, 26, 25, 24, 23, 22, 21)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `games`[0m
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (Duration: 87.8ms | Allocations: 69116)
+Completed 200 OK in 92ms (Views: 89.9ms | ActiveRecord: 1.0ms | Allocations: 72310)
+
+
+Started GET "/admin/game?_pjax=%5Bdata-pjax-container%5D&page=3&sort=id&sort_reverse=false&_pjax=%5Bdata-pjax-container%5D" for ::1 at 2020-02-28 16:27:37 -0800
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "page"=>"3", "sort"=>"id", "sort_reverse"=>"false", "model_name"=>"game"}
+  Rendering /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT `games`.* FROM `games` ORDER BY games.id desc LIMIT 20 OFFSET 40[0m
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` IN (20, 19, 18, 17, 16, 15, 14, 13, 12)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `games`[0m
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (Duration: 99.0ms | Allocations: 69134)
+Completed 200 OK in 104ms (Views: 101.3ms | ActiveRecord: 0.9ms | Allocations: 72327)
+
+
+Started GET "/admin/game?_pjax=%5Bdata-pjax-container%5D&page=4&sort=id&sort_reverse=false&_pjax=%5Bdata-pjax-container%5D" for ::1 at 2020-02-28 16:27:38 -0800
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "page"=>"4", "sort"=>"id", "sort_reverse"=>"false", "model_name"=>"game"}
+  Rendering /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT `games`.* FROM `games` ORDER BY games.id desc LIMIT 20 OFFSET 60[0m
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` IN (12, 11, 10, 9, 8, 7, 6, 5, 4, 3)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `games`[0m
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (Duration: 101.4ms | Allocations: 69140)
+Completed 200 OK in 106ms (Views: 103.7ms | ActiveRecord: 0.9ms | Allocations: 72332)
+
+
+Started GET "/admin/game?_pjax=%5Bdata-pjax-container%5D&page=5&sort=id&sort_reverse=false&_pjax=%5Bdata-pjax-container%5D" for ::1 at 2020-02-28 16:27:39 -0800
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"_pjax"=>"[data-pjax-container]", "page"=>"5", "sort"=>"id", "sort_reverse"=>"false", "model_name"=>"game"}
+  Rendering /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT `games`.* FROM `games` ORDER BY games.id desc LIMIT 20 OFFSET 80[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` IN (3, 2, 1)[0m
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (Duration: 30.2ms | Allocations: 24383)
+Completed 200 OK in 35ms (Views: 32.7ms | ActiveRecord: 0.6ms | Allocations: 27572)
+
+
+Started GET "/admin/game?model_name=game&sort=id&sort_reverse=true&_pjax=%5Bdata-pjax-container%5D" for ::1 at 2020-02-28 16:27:43 -0800
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"model_name"=>"game", "sort"=>"id", "sort_reverse"=>"true", "_pjax"=>"[data-pjax-container]"}
+  Rendering /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT `games`.* FROM `games` ORDER BY games.id asc LIMIT 20 OFFSET 0[0m
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `games`[0m
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (Duration: 82.0ms | Allocations: 69105)
+Completed 200 OK in 86ms (Views: 84.2ms | ActiveRecord: 0.8ms | Allocations: 72292)
+
+
+Started GET "/admin/game?model_name=game&sort=id&_pjax=%5Bdata-pjax-container%5D" for ::1 at 2020-02-28 16:27:46 -0800
+Processing by RailsAdmin::MainController#index as HTML
+  Parameters: {"model_name"=>"game", "sort"=>"id", "_pjax"=>"[data-pjax-container]"}
+  Rendering /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT `games`.* FROM `games` ORDER BY games.id desc LIMIT 20 OFFSET 0[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT `matches`.* FROM `matches` WHERE `matches`.`id` IN (37, 36, 35, 34, 33, 32, 31, 30, 29)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `games`[0m
+  Rendered /home/dev/.rvm/gems/ruby-2.6.3/gems/rails_admin-2.0.1/app/views/rails_admin/main/index.html.haml within layouts/rails_admin/pjax (Duration: 94.4ms | Allocations: 69088)
+Completed 200 OK in 99ms (Views: 96.9ms | ActiveRecord: 0.5ms | Allocations: 72283)
+
+
