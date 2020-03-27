@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-
 set -e
 
-echo "Run Migrations"
+echo "Deploying Ping Pong Manager"
 
-heroku run --remote production rails db:migrate
-heroku run --remote production rails db:seed
+heroku git:remote --app hp-ping-pong-manager --remote heroku-18
+heroku run --remote heroku-18 rails db:migrate
+heroku run --remote heroku-18 rails db:seed
