@@ -290,7 +290,9 @@ Game.where( id: 86, winner: 14, loser: 20, match_id: m.id ).first_or_create
 #---------------------------------------------------------------------------------------------------------------#
 
 puts "Creating archived tournaments and games #2"
-Tournament.where( id: 2, format: Tournament::SSES, name: 'Q3 2019 Ping Pong Tournament', start_date: DateTime.parse('2019-07-01T12:00:00'), end_date: DateTime.parse('2019-09-01T12:00:00') ).first_or_create
+Tournament.where( id: 2, format: Tournament::SSES, name: 'Q4 2019 Ping Pong Tournament', start_date: DateTime.parse('2019-07-01T12:00:00'), end_date: DateTime.parse('2019-09-01T12:00:00') ).first_or_create
+m = Match.where( id: 39, player_1_id: 20, player_2_id: 14, format: Match::B321, weight: 0, tournament_id: 2 ).first_or_create
+Game.where( id: 87, winner: 14, loser: 20, match_id: m.id ).first_or_create
 # matches
 # games
 # score
