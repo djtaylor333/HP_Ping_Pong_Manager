@@ -1,0 +1,6 @@
+{
+  "name":"Hp Ping Pong Scripts",
+  "scripts": {
+    "postdeploy": "bin/deploy"
+  }
+}
