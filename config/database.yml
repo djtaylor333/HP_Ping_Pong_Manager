@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: ping_pong_manager
-  username: a
-  password: <%= ENV['A_DATABASE_PASSWORD'] %>
+  database: d7tqr7rks6kne0
+  username: wsjnjhryzjqgez
+  password: fa9e66172232103d03be6223e52993b94fed5576a950337c159e8e1319a077c7
