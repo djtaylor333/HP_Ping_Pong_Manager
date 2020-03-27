@@ -1,3 +1,4 @@
+# encoding: utf-8
 class CreateUsersTable < ActiveRecord::Migration[6.0]
   def change
     create_table :players do |t|

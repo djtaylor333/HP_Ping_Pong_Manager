@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_01_31_222724) do
 
-  create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "date_played"
     t.integer "winner"
     t.integer "loser"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_222724) do
     t.index ["match_id"], name: "index_games_on_match_id"
   end
 
-  create_table "matches", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "matches", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "date_played"
     t.integer "player_1_id", null: false
     t.integer "player_2_id", null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_222724) do
     t.index ["tournament_id"], name: "index_matches_on_tournament_id"
   end
 
-  create_table "players", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "players", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.integer "rank", default: 0
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_222724) do
     t.index ["tournament_id"], name: "index_players_on_tournament_id"
   end
 
-  create_table "scores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "scores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "winner_points", default: 0
     t.integer "loser_points", default: 0
     t.datetime "created_at", precision: 6, null: false
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_01_31_222724) do
     t.index ["game_id"], name: "index_scores_on_game_id"
   end
 
-  create_table "tournaments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "tournaments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "format", null: false
     t.string "name", null: false
     t.datetime "start_date", null: false

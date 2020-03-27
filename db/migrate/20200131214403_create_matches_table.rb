@@ -1,3 +1,4 @@
+# encoding: utf-8
 class CreateMatchesTable < ActiveRecord::Migration[6.0]
   def change
     create_table :matches do |t|

@@ -1,3 +1,4 @@
+# encoding: utf-8
 class CreateScoresTable < ActiveRecord::Migration[6.0]
   def change
     create_table :scores do |t|

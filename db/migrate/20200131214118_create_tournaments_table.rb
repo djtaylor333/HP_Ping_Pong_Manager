@@ -1,3 +1,4 @@
+# encoding: utf-8
 class CreateTournamentsTable < ActiveRecord::Migration[6.0]
   def change
     create_table :tournaments do |t|
