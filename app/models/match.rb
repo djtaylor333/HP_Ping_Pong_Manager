@@ -11,9 +11,17 @@ class Match < ApplicationRecord
     return player_2_id
   end
 
+  def winner_name
+    Player.find_by(id: winner).name
+  end
+
   def loser
     return player_1_id if games.where(loser: player_1_id).count >
       games.where(loser: player_2_id).count
     return player_2_id
+  end
+
+  def loser_name
+    Player.find_by(id: loser).name
   end
 end

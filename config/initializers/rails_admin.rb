@@ -82,26 +82,8 @@ RailsAdmin.config do |config|
 
     config.model 'Tournament' do
       list do
-        include_all_fields
-      end
-      edit do
-        include_all_fields
-      end
-    end
-
-    config.model 'Match' do
-      list do
-        field :winner do
-          read_only true
-          formatted_value do
-            bindings[:object].winner
-          end
-        end
-        field :loser do
-          read_only true
-          formatted_value do
-            bindings[:object].loser
-          end
+        field :winner_name do
+          formatted_value{ bindings[:object].winner_name }
         end
         include_all_fields
       end
@@ -109,6 +91,46 @@ RailsAdmin.config do |config|
         include_all_fields
       end
       show do
+        field :winner_name do
+          formatted_value{ bindings[:object].winner_name }
+        end
+        include_all_fields
+      end
+    end
+
+    config.model 'Match' do
+      list do
+        field :winner_name do
+          read_only true
+          formatted_value do
+            bindings[:object].winner_name
+          end
+        end
+        field :loser_name do
+          read_only true
+          formatted_value do
+            bindings[:object].loser_name
+          end
+        end
+        field :format
+        field :tournament_id
+      end
+      edit do
+        include_all_fields
+      end
+      show do
+        field :winner_name do
+          read_only true
+          formatted_value do
+            bindings[:object].winner_name
+          end
+        end
+        field :loser_name do
+          read_only true
+          formatted_value do
+            bindings[:object].loser_name
+          end
+        end
         field :winner do
           read_only true
           formatted_value do
@@ -128,17 +150,49 @@ RailsAdmin.config do |config|
     config.model 'Game' do
       list do
         include_all_fields
+        field :winner_name do
+          read_only true
+          formatted_value do
+            bindings[:object].winner_name
+          end
+        end
+        field :loser_name do
+          read_only true
+          formatted_value do
+            bindings[:object].loser_name
+          end
+        end
       end
       edit do
         include_all_fields
+      end
+      show do
+        include_all_fields
+        field :winner_name do
+          read_only true
+          formatted_value do
+            bindings[:object].winner_name
+          end
+        end
+        field :loser_name do
+          read_only true
+          formatted_value do
+            bindings[:object].loser_name
+          end
+        end
       end
     end
 
     config.model 'Score' do
       list do
-        include_all_fields
+        field :winner_points
+        field :loser_points
+        field :game_id
       end
       edit do
+        include_all_fields
+      end
+      show do
         include_all_fields
       end
     end
