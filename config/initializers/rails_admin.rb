@@ -152,14 +152,16 @@ RailsAdmin.config do |config|
         include_all_fields
         field :winner_name do
           read_only true
-          formatted_value do
-            bindings[:object].winner_name
+          pretty_value do
+            winner = Player.find_by(id: value)
+            winner.present? ? bindings[:view].link_to(value, bindings[:view].rails_admin.show_path('player', winner.id)) : value
           end
         end
         field :loser_name do
           read_only true
-          formatted_value do
-            bindings[:object].loser_name
+          pretty_value do
+            loser = Player.find_by(id: value)
+            loser.present? ? bindings[:view].link_to(value, bindings[:view].rails_admin.show_path('player', loser.id)) : value
           end
         end
       end
@@ -170,14 +172,16 @@ RailsAdmin.config do |config|
         include_all_fields
         field :winner_name do
           read_only true
-          formatted_value do
-            bindings[:object].winner_name
+          pretty_value do
+            winner = Player.find_by(id: value)
+            winner.present? ? bindings[:view].link_to(value, bindings[:view].rails_admin.show_path('player', winner.id)) : value
           end
         end
         field :loser_name do
           read_only true
-          formatted_value do
-            bindings[:object].loser_name
+          pretty_value do
+            loser = Player.find_by(id: value)
+            loser.present? ? bindings[:view].link_to(value, bindings[:view].rails_admin.show_path('player', loser.id)) : value
           end
         end
       end
